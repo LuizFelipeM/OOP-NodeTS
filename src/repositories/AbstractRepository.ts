@@ -1,42 +1,23 @@
 import { injectable, unmanaged } from 'inversify'
-import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
+import { DeepPartial, DeleteResult, EntityTarget, FindConditions, getRepository, Repository } from 'typeorm'
+import { AbstractEntity } from '../domain/entities/AbstractEntity'
 
 @injectable()
-export abstract class AbstractRepository<T extends IBaseEntity> {
+export abstract class AbstractRepository<T extends AbstractEntity> {
+  protected readonly session: Repository<T>
+
   constructor (
     @unmanaged()
-    private readonly table: Table,
-    @unmanaged()
-    protected readonly session = knex<T>()(table),
-    @unmanaged()
-    private readonly abstractSession = knex<unknown>()(table)
-  ) { }
-
-  selectAll = async (): Promise<T[]> =>
-    await this.abstractSession
-      .select('*')
-
-  selectById = async (id: number): Promise<T> =>
-    await this.abstractSession
-      .select('*')
-      .where({ id })
-      .first()
-
-  insert = async (data: Omit<T, 'id'>): Promise<{ id: number }> => {
-    const [id] = await this.abstractSession
-      .insert(data)
-      .returning<number[]>('id')
-
-    return { id }
+      entity: EntityTarget<T>
+  ) {
+    this.session = getRepository(entity)
   }
 
-  updateById = async (data: Partial<T>): Promise<void> =>
-    await this.abstractSession
-      .where({ id: data.id })
-      .update(data)
+  select = async (where?: FindConditions<T>): Promise<T[]> => await this.session.find({ where })
 
-  delete = async (id: number): Promise<void> =>
-    await this.abstractSession
-      .where({ id })
-      .delete()
+  selectById = async (id: number): Promise<T | undefined> => await this.session.findOne(id)
+
+  insertOrUpdate = async (data: DeepPartial<T>): Promise<{ id: number }> => await this.session.save(data)
+
+  delete = async (removeCriteria: string | number | FindConditions<T> | string[] | number[] | Date | Date[]): Promise<DeleteResult> => await this.session.delete(removeCriteria)
 }
