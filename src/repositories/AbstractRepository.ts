@@ -13,7 +13,7 @@ export abstract class AbstractRepository<T extends AbstractEntity> {
     this.session = getRepository(entity)
   }
 
-  select = async (where?: FindConditions<T>): Promise<T[]> => await this.session.find({ where })
+  select = async (where?: FindConditions<T>): Promise<T[]> => await this.session.find(where)
 
   selectById = async (id: number): Promise<T | undefined> => await this.session.findOne(id)
 

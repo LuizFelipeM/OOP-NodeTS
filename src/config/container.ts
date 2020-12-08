@@ -2,6 +2,10 @@ import { glob } from 'glob'
 import { Container, interfaces } from 'inversify'
 import { join } from 'path'
 
+type FileContent = {
+  [x: string]: interfaces.ServiceIdentifier<unknown>
+}
+
 export function buildContainer (): Promise<Container> {
   const repositoriesPath = join(__dirname, '..', 'repositories')
   const servicesPath = join(__dirname, '..', 'services')
@@ -17,7 +21,7 @@ export function buildContainer (): Promise<Container> {
 
       Promise
         .all(importControllersReposAndServices)
-        .then((values: Array<{ [x: string]: interfaces.ServiceIdentifier<unknown> }>) => {
+        .then((values: Array<FileContent>) => {
           const container = new Container()
 
           values.forEach(val => {
