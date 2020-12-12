@@ -24,13 +24,13 @@ This repository is a template with all predefined structure to build Node projec
         height="35"
         alt="TypeORM"
         title="TypeORM"
-        src="https://i.ibb.co/ByKhJGP/typeorm.png"
+        src="https://i.ibb.co/VqLZB1X/typeorm.png"
     />
     TypeORM</a>,
     <a href="https://inversify.io/">
     <img
         height="35"
-        style="background: linear-gradient(0deg, rgba(0, 116, 193,0.7), rgba(0, 116, 193,0.7)); border-radius: 4px"
+        style="background: linear-gradient(0deg, rgba(0, 116, 193,0.7), rgba(0, 116, 193,0.7))"
         alt="InversifyJS"
         title="InversifyJS"
         src="https://inversify.io/img/logo_transparent.svg"
