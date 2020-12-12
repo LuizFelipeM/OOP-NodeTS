@@ -10,7 +10,7 @@
 
 This repository is a template with all predefined structure to build Node projects with pre configured modules like:
 
-<h3>
+<h2>
     <a href="https://www.typescriptlang.org/">
     <img
         height="35"
@@ -30,10 +30,9 @@ This repository is a template with all predefined structure to build Node projec
     <a href="https://inversify.io/">
     <img
         height="35"
-        style="background: linear-gradient(0deg, rgba(0, 116, 193,0.7), rgba(0, 116, 193,0.7))"
         alt="InversifyJS"
         title="InversifyJS"
-        src="https://inversify.io/img/logo_transparent.svg"
+        src="https://i.ibb.co/SNM0k5g/inversify.png"
     />
     InversifyJS</a>,
     <a href="http://jestjs.io/">
@@ -60,6 +59,35 @@ This repository is a template with all predefined structure to build Node projec
         src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/358/full/eslintlogo.png"
     />
     Eslint</a>,
-</h3>
+</h2>
 
 Aiming to improve performance when starting and build projects, ensuring improvement on code style standards, provisioning good starting point to projects that will be using OOP as standard paradigm and helping with DDD approach setting up DI Container using the InversifyJS.
+
+### Getting Started
+
+This project without any changes probably will throw an error when it starts, because all the `Example` files are not pointing to any data.
+
+Install dependencies:
+```
+$ npm install
+or
+$ yarn install
+```
+
+Create a `.env` file following the `.env.example` file as model.
+
+At this point all is ready to run the project, you can:
+
+Run using Nodemon in develop environment:
+```
+$ npm run dev
+or
+$ yarn run dev
+```
+
+Run in production environment:
+```
+$ npm start
+or
+$ yarn start
+```
