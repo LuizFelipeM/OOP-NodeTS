@@ -62,9 +62,9 @@ This repository is a template with all predefined structure to build Node projec
 </h2>
 
 ## Table of contents
-- [About](#-about)
-- [Getting Started](#-getting-started)
-- [Removing Example Files](#-removing-`example`-files)
+- [About](#about)
+- [Getting Started](#getting-started)
+- [Removing Example Files](#removing-example-files)
 
 ## About 
 
@@ -74,7 +74,7 @@ OOP - NodeTS aim to improve performance when starting and build projects, ensuri
 
 This project without any changes probably will throw an error when it starts, because all the `Example` files that is related with TypeORM are not pointing to any data.
 
-To make it simple as possible you can replace the `Example` files with something that make sense for your purpose, as they are only present to illustrate how to create these files. To see some examples of how to replace `Example` files see the [Removing Example Files](#-removing-`example`-files) section
+To make it simple as possible you can replace the `Example` files with something that make sense for your purpose, as they are only present to illustrate how to create these files. To see some examples of how to replace `Example` files see the [Removing Example Files](#removing-example-files) section
 
 Install dependencies:
 ```
