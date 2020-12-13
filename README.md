@@ -58,14 +58,23 @@ This repository is a template with all predefined structure to build Node projec
         title="Eslint"
         src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/358/full/eslintlogo.png"
     />
-    Eslint</a>,
+    Eslint</a>
 </h2>
 
-Aiming to improve performance when starting and build projects, ensuring improvement on code style standards, provisioning good starting point to projects that will be using OOP as standard paradigm and helping with DDD approach setting up DI Container using the InversifyJS.
+## Table of contents
+- [About](#-about)
+- [Getting Started](#-getting-started)
+- [Removing Example Files](#-removing-`example`-files)
 
-### Getting Started
+## About 
 
-This project without any changes probably will throw an error when it starts, because all the `Example` files are not pointing to any data.
+OOP - NodeTS aim to improve performance when starting and build projects, ensuring improvement on code style standards, provisioning good starting point to projects that will be using OOP as standard paradigm and helping with DDD approach setting up DI Container using the InversifyJS.
+
+## Getting Started
+
+This project without any changes probably will throw an error when it starts, because all the `Example` files that is related with TypeORM are not pointing to any data.
+
+To make it simple as possible you can replace the `Example` files with something that make sense for your purpose, as they are only present to illustrate how to create these files. To see some examples of how to replace `Example` files see the [Removing Example Files](#-removing-`example`-files) section
 
 Install dependencies:
 ```
@@ -90,4 +99,63 @@ Run in production environment:
 $ npm start
 or
 $ yarn start
+```
+
+Run tests and check if all is working properly:
+```
+$ npm test
+or
+$ yarn test
+```
+
+## Removing `Example` files
+
+Let's assume that we have setting up all the Postgres stuffs and want to do some manupulation on post data, in order to do this we can delete the `Example.ts` in entities folder and then add the `Post.ts`:
+
+```typescript
+/* ----- Post.ts ----- */
+
+@Entity()
+export class Post extends BaseEntity {
+  @Column({ length: 100 })
+  name: string
+}
+```
+
+To use this new `Post` entity created we need to remove the Controller, Service and Repository examples to create new ones that can use this new entity.
+
+Starting with Repository the new `PostRepository.ts` will look like:
+```typescript
+/* ----- PostRepository.ts ----- */
+
+export class PostRepository extends AbstractRepository<Post> {
+  constructor () {
+    super(Post)
+  }
+}
+```
+
+Then the `PostService.ts` will look like:
+```typescript
+/* ----- PostService.ts ----- */
+
+export class PostService extends AbstractService<Example, PostRepository> {
+  constructor (
+    @inject(PostRepository)
+    protected readonly postRepository: PostRepository
+  ) { super(postRepository) }
+}
+```
+
+And finally the `PostController.ts` as follow:
+```typescript
+/* ----- PostController.ts ----- */
+
+@controller('/post')
+export class ExampleController extends AbstractController<Post, PostService> {
+  constructor (
+    @inject(PostService)
+    protected readonly postService: PostService
+  ) { super(postService) }
+}
 ```
