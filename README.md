@@ -68,7 +68,7 @@ This repository is a template with all predefined structure to build Node projec
 
 ## About 
 
-OOP - NodeTS aim to improve performance when starting and build projects, ensuring improvement on code style standards, provisioning good starting point to projects that will be using OOP as standard paradigm and helping with DDD approach setting up DI Container using the InversifyJS.
+OOP - NodeTS aim to improve performance on NodeJs project kick start. Ensuring code style standards, bootstraping OOP as standard paradigm and helping with DDD approach setting up DI Container using the [InversifyJS](https://inversify.io/).
 
 ## Getting Started
 
@@ -77,9 +77,9 @@ This project without any changes probably will throw an error when it starts, be
 To make it simple as possible you can replace the `Example` files with something that make sense for your purpose, as they are only present to illustrate how to create these files. To see some examples of how to replace `Example` files see the [Removing Example Files](#removing-example-files) section
 
 Install dependencies:
-```
+```bash
 $ npm install
-or
+# or
 $ yarn install
 ```
 
@@ -88,23 +88,23 @@ Create a `.env` file following the `.env.example` file as model.
 At this point all is ready to run the project, you can:
 
 Run using Nodemon in develop environment:
-```
+```bash
 $ npm run dev
-or
+# or
 $ yarn run dev
 ```
 
 Run in production environment:
-```
+```bash
 $ npm start
-or
+# or
 $ yarn start
 ```
 
 Run tests and check if all is working properly:
-```
+```bash
 $ npm test
-or
+# or
 $ yarn test
 ```
 
@@ -139,7 +139,7 @@ Then the `PostService.ts` will look like:
 ```typescript
 /* ----- PostService.ts ----- */
 
-export class PostService extends AbstractService<Example, PostRepository> {
+export class PostService extends AbstractService<Post, PostRepository> {
   constructor (
     @inject(PostRepository)
     protected readonly postRepository: PostRepository
@@ -152,7 +152,7 @@ And finally the `PostController.ts` as follow:
 /* ----- PostController.ts ----- */
 
 @controller('/post')
-export class ExampleController extends AbstractController<Post, PostService> {
+export class PostController extends AbstractController<Post, PostService> {
   constructor (
     @inject(PostService)
     protected readonly postService: PostService
